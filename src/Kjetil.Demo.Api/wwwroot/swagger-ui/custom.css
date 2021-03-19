@@ -1,0 +1,38 @@
+﻿title {
+    display: none
+}
+
+.topbar-wrapper img[alt="Swagger UI"], .topbar-wrapper span {
+    visibility: hidden;
+}
+
+.swagger-ui .topbar {
+    padding: 10px 0;
+    background-color: #fff;
+}
+
+.topbar-wrapper .link:after {
+    content: url("logo-sopra-steria.png");
+    color: #fff;
+    visibility: visible;
+    display: block;
+    position: absolute;
+    padding: 15px;
+}
+
+.swagger-ui .topbar .download-url-wrapper .select-label select {
+    border-color: #007bff;
+}
+
+.swagger-ui .info .title small:last-child {
+    background-color: #007bff !important;
+    color: #a60726
+}
+
+.swagger-ui .opblock-tag {
+    color: #a60726;
+}
+
+.swagger-ui .opblock.opblock-get .opblock-summary-method {
+    background: #000;
+}
