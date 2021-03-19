@@ -27,3 +27,7 @@ jobs:
       
     - name: Unit test
       run: dotnet test --no-build --verbosity normal
+      
+    - name: SonarCloud Scan
+      uses: SonarSource/sonarcloud-github-action@v1.5
+          projectBaseDir: # optional, default is .      
