@@ -14,6 +14,7 @@ Install-Package Swashbuckle.AspNetCore -Version 6.1.1
 - Customized gui
 - Enrich auto documentet controllers
 
+#### How it looks
 ![Image of customized open api](docs/OpenApi.png)
 
 See the [a OpenApiInstaller](src/Kjetil.Demo.Api/Infrastructure/OpenApiInstaller.cs) for example code
