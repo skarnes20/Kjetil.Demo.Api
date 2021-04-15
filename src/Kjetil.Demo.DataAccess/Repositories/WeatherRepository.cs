@@ -17,7 +17,7 @@ namespace Kjetil.Demo.DataAccess.Repositories
 
         public async Task<IEnumerable<WeatherEntity>> Get(int quantity)
         {
-            return await _context.Weather.Take(quantity).ToListAsync();
+            return await _context.Weather.OrderBy(x => x.Id).Take(quantity).ToListAsync();
         }
     }
 }
