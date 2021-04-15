@@ -5,19 +5,21 @@ VisualStudioVersion = 16.0.31025.218
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kjetil.Demo.Api", "src\Kjetil.Demo.Api\Kjetil.Demo.Api.csproj", "{EEE23CF7-7AD5-4EBD-9FBE-060779F15CF5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kjetil.Demo.Service", "src\Kjetil.Demo.Service\Kjetil.Demo.Service.csproj", "{959542B9-381A-4B74-A7C2-9C67491CFB89}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kjetil.Demo.Service", "src\Kjetil.Demo.Service\Kjetil.Demo.Service.csproj", "{959542B9-381A-4B74-A7C2-9C67491CFB89}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kjetil.Demo.Shared", "src\Kjetil.Demo.Shared\Kjetil.Demo.Shared.csproj", "{F3680178-51AE-4D27-AFDD-F06583E568FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kjetil.Demo.Shared", "src\Kjetil.Demo.Shared\Kjetil.Demo.Shared.csproj", "{F3680178-51AE-4D27-AFDD-F06583E568FE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{3C88B2B2-0CCE-47D6-B617-D774365F4224}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kjetil.Demo.Api.UnitTest", "tests\Kjetil.Demo.Api.UnitTest\Kjetil.Demo.Api.UnitTest.csproj", "{0D47D2E1-11EF-4F62-A53C-1685594B46A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kjetil.Demo.Api.UnitTest", "tests\Kjetil.Demo.Api.UnitTest\Kjetil.Demo.Api.UnitTest.csproj", "{0D47D2E1-11EF-4F62-A53C-1685594B46A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kjetil.Demo.DataAccess", "src\Kjetil.Demo.DataAccess\Kjetil.Demo.DataAccess.csproj", "{A07EB2F7-BB77-4637-8A37-BB2B576EC58B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kjetil.Demo.DataAccess", "src\Kjetil.Demo.DataAccess\Kjetil.Demo.DataAccess.csproj", "{A07EB2F7-BB77-4637-8A37-BB2B576EC58B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kjetil.Demo.Service.UnitTest", "tests\Kjetil.Demo.Service.UnitTest\Kjetil.Demo.Service.UnitTest.csproj", "{5282FFD5-1F5F-43CF-849A-A49026DD9D8F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kjetil.Demo.Service.UnitTest", "tests\Kjetil.Demo.Service.UnitTest\Kjetil.Demo.Service.UnitTest.csproj", "{5282FFD5-1F5F-43CF-849A-A49026DD9D8F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kjetil.Demo.DataAccess.UnitTest", "tests\Kjetil.Demo.DataAccess.UnitTest\Kjetil.Demo.DataAccess.UnitTest.csproj", "{42C2AB4F-7D0B-486F-8791-25FD51859404}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kjetil.Demo.DataAccess.UnitTest", "tests\Kjetil.Demo.DataAccess.UnitTest\Kjetil.Demo.DataAccess.UnitTest.csproj", "{42C2AB4F-7D0B-486F-8791-25FD51859404}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kjetil.Demo.Api.IntegrationTest", "tests\Kjetil.Demo.Api.IntegrationTest\Kjetil.Demo.Api.IntegrationTest.csproj", "{4623917E-F468-47D0-AF32-EF903DA79B22}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +55,10 @@ Global
 		{42C2AB4F-7D0B-486F-8791-25FD51859404}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42C2AB4F-7D0B-486F-8791-25FD51859404}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{42C2AB4F-7D0B-486F-8791-25FD51859404}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4623917E-F468-47D0-AF32-EF903DA79B22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4623917E-F468-47D0-AF32-EF903DA79B22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4623917E-F468-47D0-AF32-EF903DA79B22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4623917E-F468-47D0-AF32-EF903DA79B22}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -61,6 +67,7 @@ Global
 		{0D47D2E1-11EF-4F62-A53C-1685594B46A2} = {3C88B2B2-0CCE-47D6-B617-D774365F4224}
 		{5282FFD5-1F5F-43CF-849A-A49026DD9D8F} = {3C88B2B2-0CCE-47D6-B617-D774365F4224}
 		{42C2AB4F-7D0B-486F-8791-25FD51859404} = {3C88B2B2-0CCE-47D6-B617-D774365F4224}
+		{4623917E-F468-47D0-AF32-EF903DA79B22} = {3C88B2B2-0CCE-47D6-B617-D774365F4224}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {833BEACA-3A59-4F8E-A5B0-C64CDF3C611F}
