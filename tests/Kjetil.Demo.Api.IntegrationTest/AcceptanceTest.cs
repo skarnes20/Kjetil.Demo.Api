@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Kjetil.Demo.Api.IntegrationTest.Infrastructure;
+using Kjetil.Demo.Shared.ViewModels;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Xunit;
 
@@ -19,6 +21,17 @@ namespace Kjetil.Demo.Api.IntegrationTest
 
             response.EnsureSuccessStatusCode();
             Assert.Equal("application/json; charset=utf-8", response.Content.Headers.ContentType?.ToString());
+        }
+
+        [Theory(DisplayName = "Return correct forecast")]
+        [InlineData("api/forecast/5")]
+        public async Task Forecast_Get_CorrectForecast(string url)
+        {
+            var response = await HttpClient.GetAsync(url);
+
+            var forecast = await Get<List<ForecastViewModel>>(response);
+
+            Assert.True(forecast.Count == 5, "Wrong number of forecasts");
         }
     }
 }

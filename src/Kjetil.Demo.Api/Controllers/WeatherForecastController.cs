@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Kjetil.Demo.Service;
 using Kjetil.Demo.Shared.ViewModels;
-using Microsoft.AspNetCore.Routing;
 
 namespace Kjetil.Demo.Api.Controllers
 {
