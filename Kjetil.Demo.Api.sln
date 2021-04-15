@@ -19,11 +19,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kjetil.Demo.Service.UnitTes
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kjetil.Demo.DataAccess.UnitTest", "tests\Kjetil.Demo.DataAccess.UnitTest\Kjetil.Demo.DataAccess.UnitTest.csproj", "{42C2AB4F-7D0B-486F-8791-25FD51859404}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution", "solution", "{3D640E78-4F03-40CC-8AD0-6F3EBF3E51A4}"
-	ProjectSection(SolutionItems) = preProject
-		README.md = README.md
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

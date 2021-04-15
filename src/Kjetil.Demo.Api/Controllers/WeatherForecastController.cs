@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Kjetil.Demo.Service;
 using Kjetil.Demo.Shared.ViewModels;
-using Microsoft.AspNetCore.Routing;
 
 namespace Kjetil.Demo.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/forecast")]
     public class WeatherForecastController : ControllerBase
     {
         private readonly IWeatherService _service;

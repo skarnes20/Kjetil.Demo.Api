@@ -19,5 +19,6 @@ namespace Kjetil.Demo.DataAccess.Repositories
         {
             return await _context.Weather.OrderBy(x => x.Id).Take(quantity).ToListAsync();
         }
+
     }
 }
