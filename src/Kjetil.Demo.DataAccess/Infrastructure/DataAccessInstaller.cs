@@ -1,6 +1,5 @@
 ﻿using Kjetil.Demo.DataAccess.Repositories;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Kjetil.Demo.DataAccess.Infrastructure

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using AutoFixture;
 using Kjetil.Demo.DataAccess.Entities;
 using Kjetil.Demo.Service.Mappers;

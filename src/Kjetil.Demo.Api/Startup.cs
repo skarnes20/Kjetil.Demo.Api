@@ -23,7 +23,6 @@ namespace Kjetil.Demo.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers();
             services.AddOpenApi(_openApiConfig);
             services.AddServices();

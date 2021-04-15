@@ -26,7 +26,7 @@ namespace Kjetil.Demo.Api.Infrastructure
         public static void UseOpenApi(this IApplicationBuilder app, OpenApiConfig openApiConfig)
         {
             app.UseStaticFiles();
-            app.UseSwagger(options => options.RouteTemplate = $"docs/{{documentName}}/docs.json");
+            app.UseSwagger(options => options.RouteTemplate = "docs/{documentName}/docs.json");
             app.UseSwaggerUI(options =>
             {
                 options.InjectStylesheet("/swagger-ui/custom.css");
