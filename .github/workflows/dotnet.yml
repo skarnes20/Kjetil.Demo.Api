@@ -22,7 +22,7 @@ jobs:
       run: dotnet build --no-restore
       
     - name: Unit test
-      run: dotnet test --no-build --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+      run: dotnet test --no-build --verbosity normal --collect "XPlat Code coverage" /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
       
     - name: SonarCloud Scan
       uses: SonarSource/sonarcloud-github-action@v1.5
