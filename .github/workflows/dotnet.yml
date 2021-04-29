@@ -24,6 +24,17 @@ jobs:
     - name: Unit test
       run: dotnet test --no-build --verbosity normal --collect "XPlat Code coverage" /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=TestResults/ 
       
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v2.2.3
+      with:        
+        name: code-coverage-report
+        path: TestResults
+    
+  sonarCloudTrigger:
+    needs: build
+    name: SonarCloud
+    runs-on: ubuntu-latest
+    steps:
     - name: SonarCloud Scan
       uses: SonarSource/sonarcloud-github-action@v1.5
       with:
