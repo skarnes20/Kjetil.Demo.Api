@@ -1,9 +1,8 @@
-﻿namespace Kjetil.Demo.Shared.ViewModels
-{
-    public class TemperatureViewModel
-    {
-        public int Celcius { get; set; }
+﻿namespace Kjetil.Demo.Shared.ViewModels;
 
-        public int Farenheit { get; set; }
-    }
+public class TemperatureViewModel
+{
+    public int Celcius { get; set; }
+
+    public int Farenheit { get; set; }
 }
