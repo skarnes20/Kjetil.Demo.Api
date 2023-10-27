@@ -1,9 +1,8 @@
-﻿namespace Kjetil.Demo.Api.Infrastructure
-{
-    public class OpenApiConfig
-    {
-        public string Title { get; set; }
+﻿namespace Kjetil.Demo.Api.Infrastructure;
 
-        public string Version { get; set; }
-    }
+public class OpenApiConfig
+{
+    public string Title { get; set; }
+
+    public string Version { get; set; }
 }
