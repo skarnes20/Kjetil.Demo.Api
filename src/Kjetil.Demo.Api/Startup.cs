@@ -1,49 +1,40 @@
-using Kjetil.Demo.Api.Infrastructure;
-using Kjetil.Demo.Service.Infrastructure;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+namespace Kjetil.Demo.Api;
 
-namespace Kjetil.Demo.Api
+public class Startup
 {
-    public class Startup
+    private readonly OpenApiConfig _openApiConfig;
+
+    public Startup(IConfiguration configuration)
     {
-        private readonly OpenApiConfig _openApiConfig;
+        Configuration = configuration;
+        _openApiConfig = OpenApiInstaller.DefaultConfig();
+        Configuration.Bind("OpenApi", _openApiConfig);
+    }
 
-        public Startup(IConfiguration configuration)
+    public IConfiguration Configuration { get; }
+
+    public void ConfigureServices(IServiceCollection services)
+    {
+        services.AddControllers();
+        services.AddOpenApi(_openApiConfig);
+        services.AddServices();
+    }
+
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    {
+        if (env.IsDevelopment())
         {
-            Configuration = configuration;
-            _openApiConfig = OpenApiInstaller.DefaultConfig();
-            Configuration.Bind("OpenApi", _openApiConfig);
+            app.UseDeveloperExceptionPage();
+            app.UseOpenApi(_openApiConfig);
         }
 
-        public IConfiguration Configuration { get; }
+        app.UseHttpsRedirection();
+        app.UseRouting();
+        app.UseAuthorization();
 
-        public void ConfigureServices(IServiceCollection services)
+        app.UseEndpoints(endpoints =>
         {
-            services.AddControllers();
-            services.AddOpenApi(_openApiConfig);
-            services.AddServices();
-        }
-
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-                app.UseOpenApi(_openApiConfig);
-            }
-
-            app.UseHttpsRedirection();
-            app.UseRouting();
-            app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
-        }
+            endpoints.MapControllers();
+        });
     }
 }
