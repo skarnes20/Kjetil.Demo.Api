@@ -1,4 +1,4 @@
-name: MSDO windows-latest
+name: Microsoft Security DevOps Analysis
 on:
   push:
     branches:
