@@ -4,37 +4,36 @@ using AutoFixture;
 using Kjetil.Demo.DataAccess.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Kjetil.Demo.DataAccess.UnitTest.Infrastructure
+namespace Kjetil.Demo.DataAccess.UnitTest.Infrastructure;
+
+public class TestBaseDb
 {
-    public class TestBaseDb
+    private readonly DbContextOptions<WeatherDbContext> _options = new DbContextOptionsBuilder<WeatherDbContext>()
+        .UseInMemoryDatabase($"Temp_{Guid.NewGuid()}")
+        .Options;
+
+    private readonly Fixture _fixture = new();
+    private readonly Random _random = new();
+
+    public TestBaseDb()
     {
-        private readonly DbContextOptions<WeatherDbContext> _options = new DbContextOptionsBuilder<WeatherDbContext>()
-            .UseInMemoryDatabase($"Temp_{Guid.NewGuid()}")
-            .Options;
+        DbContext = new WeatherDbContext(_options);
+    }
 
-        private readonly Fixture _fixture = new();
-        private readonly Random _random = new();
+    protected WeatherDbContext DbContext { get; }
 
-        public TestBaseDb()
-        {
-            DbContext = new WeatherDbContext(_options);
-        }
+    protected void CreateForecasts(int quantity)
+    {
+        var forecasts = Enumerable.Range(1, quantity)
+            .Select(index => new WeatherEntity
+            {
+                Id = index,
+                Date = DateTime.Now.AddDays(index),
+                Temperature = _random.Next(-20, 55),
+                Summary = _fixture.Create<string>()
+            }).ToList();
 
-        protected WeatherDbContext DbContext { get; }
-
-        protected void CreateForecasts(int quantity)
-        {
-            var forecasts = Enumerable.Range(1, quantity)
-                .Select(index => new WeatherEntity
-                {
-                    Id = index,
-                    Date = DateTime.Now.AddDays(index),
-                    Temperature = _random.Next(-20, 55),
-                    Summary = _fixture.Create<string>()
-                }).ToList();
-
-                DbContext.Weather.AddRange(forecasts);
-                DbContext.SaveChanges();
-        }
+        DbContext.Weather.AddRange(forecasts);
+        DbContext.SaveChanges();
     }
 }

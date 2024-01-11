@@ -1,10 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Kjetil.Demo.DataAccess.Entities;
-using Kjetil.Demo.Service.Extensions;
-using Kjetil.Demo.Shared.ViewModels;
-
-namespace Kjetil.Demo.Service.Mappers;
+﻿namespace Kjetil.Demo.Service.Mappers;
 
 public static class WeatherMapper
 {
@@ -15,15 +9,8 @@ public static class WeatherMapper
 
     private static ForecastViewModel ToViewModel(this WeatherEntity entity)
     {
-        return new()
-        {
-            Date = entity.Date,
-            Temperature = new TemperatureViewModel
-            {
-                Celcius = entity.Temperature,
-                Farenheit = entity.Temperature.ToFarenheit()
-            },
-            Summary = entity.Summary
-        };
+        var temperature = new TemperatureViewModel(entity.Temperature, entity.Temperature.ToFahrenheit());
+
+        return new ForecastViewModel(entity.Date, temperature, entity.Summary);
     }
 }

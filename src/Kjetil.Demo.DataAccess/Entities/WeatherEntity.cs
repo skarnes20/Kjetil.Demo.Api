@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Kjetil.Demo.DataAccess.Entities;
+﻿namespace Kjetil.Demo.DataAccess.Entities;
 
 public class WeatherEntity
 {
@@ -9,6 +7,7 @@ public class WeatherEntity
 
     public DateTime Date { get; set; }
 
+    [MaxLength(100)]
     public string Summary { get; set; }
 
     public int Temperature { get; set; }

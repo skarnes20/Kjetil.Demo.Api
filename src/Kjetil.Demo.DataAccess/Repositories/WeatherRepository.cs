@@ -1,24 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Kjetil.Demo.DataAccess.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using System.Threading.Tasks;
 
-namespace Kjetil.Demo.DataAccess.Repositories
+namespace Kjetil.Demo.DataAccess.Repositories;
+
+public class WeatherRepository(WeatherDbContext context) : IWeatherRepository
 {
-    public class WeatherRepository : IWeatherRepository
+    public async Task<IEnumerable<WeatherEntity>> Get(int quantity)
     {
-        private readonly WeatherDbContext _context;
-
-        public WeatherRepository(WeatherDbContext context)
-        {
-            _context = context;
-        }
-
-        public async Task<IEnumerable<WeatherEntity>> Get(int quantity)
-        {
-            return await _context.Weather.OrderBy(x => x.Id).Take(quantity).ToListAsync();
-        }
-
+        return await context.Weather.OrderBy(x => x.Id).Take(quantity).ToListAsync();
     }
+
 }

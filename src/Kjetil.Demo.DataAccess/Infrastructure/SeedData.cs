@@ -4,9 +4,10 @@ public static class SeedData
 {
     private static readonly Random Random = new();
 
-    private static readonly string[] Summaries = {
+    private static readonly string[] Summaries =
+    [
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
+    ];
 
     public static void Seed(this ModelBuilder builder)
     {

@@ -1,7 +1,4 @@
-﻿using Kjetil.Demo.DataAccess.Infrastructure;
-using Microsoft.Extensions.DependencyInjection;
-
-namespace Kjetil.Demo.Service.Infrastructure;
+﻿namespace Kjetil.Demo.Service.Infrastructure;
 
 public static class ServiceInstaller
 {
