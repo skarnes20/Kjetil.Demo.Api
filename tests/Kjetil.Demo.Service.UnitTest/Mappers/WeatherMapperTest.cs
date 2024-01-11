@@ -19,6 +19,6 @@ public class WeatherMapperTest
 
         Assert.Equal(entities[0].Date, models[0].Date);
         Assert.Equal(entities[0].Summary, models[0].Summary);
-        Assert.Equal(entities[0].Temperature, models[0].Temperature?.Celcius);
+        Assert.Equal(entities[0].Temperature, models[0].Temperature?.Celsius);
     }
 }

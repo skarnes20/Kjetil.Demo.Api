@@ -2,7 +2,7 @@
 
 public class TemperatureViewModel
 {
-    public int Celcius { get; set; }
+    public int Celsius { get; set; }
 
-    public int Farenheit { get; set; }
+    public int Fahrenheit { get; set; }
 }

@@ -14,8 +14,8 @@ public static class WeatherMapper
             Date = entity.Date,
             Temperature = new TemperatureViewModel
             {
-                Celcius = entity.Temperature,
-                Farenheit = entity.Temperature.ToFarenheit()
+                Celsius = entity.Temperature,
+                Fahrenheit = entity.Temperature.ToFahrenheit()
             },
             Summary = entity.Summary
         };
