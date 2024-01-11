@@ -9,15 +9,8 @@ public static class WeatherMapper
 
     private static ForecastViewModel ToViewModel(this WeatherEntity entity)
     {
-        return new()
-        {
-            Date = entity.Date,
-            Temperature = new TemperatureViewModel
-            {
-                Celsius = entity.Temperature,
-                Fahrenheit = entity.Temperature.ToFahrenheit()
-            },
-            Summary = entity.Summary
-        };
+        var temperature = new TemperatureViewModel(entity.Temperature, entity.Temperature.ToFahrenheit());
+
+        return new ForecastViewModel(entity.Date, temperature, entity.Summary);
     }
 }
