@@ -1,11 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Kjetil.Demo.DataAccess.Entities;
+﻿using System.Threading.Tasks;
 
-namespace Kjetil.Demo.DataAccess.Repositories
+namespace Kjetil.Demo.DataAccess.Repositories;
+
+public interface IWeatherRepository
 {
-    public interface IWeatherRepository
-    {
-        public Task<IEnumerable<WeatherEntity>> Get(int quantity);
-    }
+    public Task<IEnumerable<WeatherEntity>> Get(int quantity);
 }
