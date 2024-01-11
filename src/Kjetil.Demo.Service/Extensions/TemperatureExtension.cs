@@ -1,12 +1,9 @@
-﻿using System;
+﻿namespace Kjetil.Demo.Service.Extensions;
 
-namespace Kjetil.Demo.Service.Extensions
+public static class TempratureExtension
 {
-    public static class TempratureExtension
+    public static int ToFarenheit(this int celcius)
     {
-        public static int ToFarenheit(this int celcius)
-        {
-            return (int)Math.Round((double)celcius * 9 / 5 + 32);
-        }
+        return (int)Math.Round((double)celcius * 9 / 5 + 32);
     }
 }

@@ -1,7 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-
-namespace Kjetil.Demo.DataAccess.Entities;
+﻿namespace Kjetil.Demo.DataAccess.Entities;
 
 public class WeatherEntity
 {

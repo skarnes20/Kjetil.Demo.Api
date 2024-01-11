@@ -4,19 +4,18 @@ using Kjetil.Demo.Service;
 using Moq;
 using Xunit;
 
-namespace Kjetil.Demo.Api.UnitTest.Controllers
+namespace Kjetil.Demo.Api.UnitTest.Controllers;
+
+public class WeatherForecastControllerTest
 {
-    public class WeatherForecastControllerTest
+    [Fact]
+    public async Task Get_Five_FetchFiveForecastsFromService()
     {
-        [Fact]
-        public async Task Get_Five_FetchFiveForecastsFromService()
-        {
-            var serviceMock = new Mock<IWeatherService>();
-            var controller = new WeatherForecastController(serviceMock.Object);
+        var serviceMock = new Mock<IWeatherService>();
+        var controller = new WeatherForecastController(serviceMock.Object);
 
-            await controller.Get(5);
+        await controller.Get(5);
 
-            serviceMock.Verify(service => service.Get(5), Times.Once);
-        }
+        serviceMock.Verify(service => service.Get(5), Times.Once);
     }
 }

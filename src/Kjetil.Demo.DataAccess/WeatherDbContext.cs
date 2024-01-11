@@ -1,25 +1,20 @@
-﻿using Kjetil.Demo.DataAccess.Entities;
-using Kjetil.Demo.DataAccess.Infrastructure;
-using Microsoft.EntityFrameworkCore;
+﻿namespace Kjetil.Demo.DataAccess;
 
-namespace Kjetil.Demo.DataAccess
+public sealed class WeatherDbContext : DbContext
 {
-    public sealed class WeatherDbContext : DbContext
-    {
-        public WeatherDbContext(DbContextOptions<WeatherDbContext> options)
+    public WeatherDbContext(DbContextOptions<WeatherDbContext> options)
         : base(options)
+    {
+        if (Database.IsSqlite())
         {
-            if (Database.IsSqlite())
-            {
-                Database.EnsureCreated();
-            }
+            Database.EnsureCreated();
         }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Seed();
-        }
-
-        public DbSet<WeatherEntity> Weather { get; set; }
     }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Seed();
+    }
+
+    public DbSet<WeatherEntity> Weather { get; set; }
 }
