@@ -2,15 +2,8 @@
 
 [ApiController]
 [Route("api/forecast")]
-public class WeatherForecastController : ControllerBase
+public class WeatherForecastController(IWeatherService service) : ControllerBase
 {
-    private readonly IWeatherService _service;
-
-    public WeatherForecastController(IWeatherService service)
-    {
-        _service = service;
-    }
-
     /// <summary>
     /// Get weather forecast for the next 5 days
     /// </summary>
@@ -18,6 +11,6 @@ public class WeatherForecastController : ControllerBase
     [HttpGet("{days}")]
     public async Task<IEnumerable<ForecastViewModel>> Get(int days)
     {
-        return await _service.Get(days);
+        return await service.Get(days);
     }
 }
