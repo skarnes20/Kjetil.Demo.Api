@@ -1,11 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Reflection;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.OpenApi.Models;
-
-namespace Kjetil.Demo.Api.Infrastructure
+﻿namespace Kjetil.Demo.Api.Infrastructure
 {
     public static class OpenApiInstaller
     {
