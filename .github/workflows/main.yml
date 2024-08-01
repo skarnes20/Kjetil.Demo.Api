@@ -18,7 +18,7 @@ jobs:
 
     # MSDO runs on windows-latest.
     # ubuntu-latest and macos-latest supporting coming soon
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
 
@@ -27,12 +27,12 @@ jobs:
 
       # Run analyzers
     - name: Run Microsoft Security DevOps Analysis
-      uses: microsoft/security-devops-action@preview
+      uses: microsoft/security-devops-action@latest
       id: msdo
 
       # Upload alerts to the Security tab
     - name: Upload alerts to Security tab
-      uses: github/codeql-action/upload-sarif@v2
+      uses: github/codeql-action/upload-sarif@v3
       with:
         sarif_file: ${{ steps.msdo.outputs.sarifFile }}
 
