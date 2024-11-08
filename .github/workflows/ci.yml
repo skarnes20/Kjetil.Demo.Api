@@ -1,0 +1,52 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build
+      run: dotnet build --no-restore --configuration Release
+
+    - name: Run tests
+      run: dotnet test --no-build --configuration Release --collect:"XPlat Code Coverage" --logger trx
+
+    - name: Publish test results
+      if: always()
+      uses: actions/upload-artifact@v2
+      with:
+        name: test-results
+        path: '**/TestResults/*.trx'
+
+    - name: Publish code coverage
+      if: always()
+      uses: actions/upload-artifact@v2
+      with:
+        name: code-coverage
+        path: '**/TestResults/*/coverage.cobertura.xml'
+
+    - name: Report code coverage
+      uses: codecov/codecov-action@v2
+      with:
+        files: '**/TestResults/*/coverage.cobertura.xml'
+        fail_ci_if_error: true
+        verbose: true
