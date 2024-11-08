@@ -1,4 +1,4 @@
-﻿global using AutoFixture;
+﻿global using Bogus;
 global using Kjetil.Demo.DataAccess.Entities;
 global using Kjetil.Demo.DataAccess.Repositories;
 global using Kjetil.Demo.DataAccess.UnitTest.Infrastructure;

@@ -25,6 +25,12 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
 
+    - name: Install SonarScanner
+      run: dotnet tool install --global dotnet-sonarscanner
+
+    - name: Begin SonarCloud analysis
+      run: dotnet sonarscanner begin /k:"skarnes20_Kjetil.Demo.Api" /o:"skarnes20" /d:sonar.login="${{ secrets.SONAR_TOKEN }}"      
+
     - name: Build
       run: dotnet build --no-restore --configuration Release
 
@@ -81,4 +87,7 @@ jobs:
       uses: EnricoMi/publish-unit-test-result-action@v2.16.1
       if: always()
       with:
-        trx_files: "${{ github.workspace }}/**/*.trx"        
+        trx_files: "${{ github.workspace }}/**/*.trx"    
+        
+    - name: End SonarCloud analysis
+      run: dotnet sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"        

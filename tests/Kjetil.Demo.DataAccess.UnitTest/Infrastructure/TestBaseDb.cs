@@ -6,8 +6,8 @@ public class TestBaseDb
         .UseInMemoryDatabase($"Temp_{Guid.NewGuid()}")
         .Options;
 
-    private readonly Fixture _fixture = new();
     private readonly Random _random = new();
+    private readonly Faker _faker = new();
 
     public TestBaseDb()
     {
@@ -24,7 +24,7 @@ public class TestBaseDb
                 Id = index,
                 Date = DateTime.Now.AddDays(index),
                 Temperature = _random.Next(-20, 55),
-                Summary = _fixture.Create<string>()
+                Summary = _faker.Lorem.Sentence()
             }).ToList();
 
         DbContext.Weather.AddRange(forecasts);

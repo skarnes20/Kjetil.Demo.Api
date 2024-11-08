@@ -2,12 +2,16 @@
 
 public class WeatherMapperTest
 {
-    private static readonly Fixture Fixture = new();
-
     [Fact(DisplayName = "WeatherMapper ToViewModel correct mapping")]
     public void ToViewModel_ListWithEntities_CorrectMapping()
     {
-        var entities = Fixture.CreateMany<WeatherEntity>(1).ToList();
+        var bogusWeather = new Faker<WeatherEntity>()
+            .RuleFor(we => we.Id, f => f.IndexFaker + 1)
+            .RuleFor(we => we.Date, f => f.Date.Past())
+            .RuleFor(we => we.Summary, f => f.Lorem.Sentence(5))
+            .RuleFor(we => we.Temperature, f => f.Random.Int(-30, 50));
+
+        var entities = bogusWeather.Generate(1).ToList();
 
         var models = entities.ToViewModel().ToList();
 
