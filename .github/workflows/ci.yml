@@ -93,7 +93,7 @@ jobs:
       run: reportgenerator -reports:./TestResults/*/coverage.cobertura.xml -targetdir:./TestResults/ -reporttypes:opencover     
       
     - name: Report test results
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: TestResults
         path: ./TestResults/      
