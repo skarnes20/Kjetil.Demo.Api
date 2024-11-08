@@ -28,6 +28,9 @@ jobs:
     - name: Install SonarScanner
       run: dotnet tool install --global dotnet-sonarscanner
 
+    - name: Install ReportGenerator
+      run: dotnet tool install --global dotnet-reportgenerator-globaltool      
+
     - name: Begin SonarCloud analysis
       run: dotnet sonarscanner begin /k:"skarnes20_Kjetil.Demo.Api" /o:"skarnes20" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.cs.cobertura.reportsPaths="**/TestResults/coverage.cobertura.xml"
 
