@@ -2,6 +2,11 @@
 
 public static class OpenApiInstaller
 {
+    /// <summary>
+    /// Adds OpenAPI/Swagger services to the specified IServiceCollection.
+    /// </summary>
+    /// <param name="services">The IServiceCollection to add the services to.</param>
+    /// <param name="openApiConfig">The OpenAPI configuration settings.</param>
     public static void AddOpenApi(this IServiceCollection services, OpenApiConfig openApiConfig)
     {
         // use auto generated documentation to enrich open api documentation
@@ -16,6 +21,11 @@ public static class OpenApiInstaller
         });
     }
 
+    /// <summary>
+    /// Configures the application to use OpenAPI/Swagger.
+    /// </summary>
+    /// <param name="app">The IApplicationBuilder to configure.</param>
+    /// <param name="openApiConfig">The OpenAPI configuration settings.</param>
     public static void UseOpenApi(this IApplicationBuilder app, OpenApiConfig openApiConfig)
     {
         app.UseStaticFiles();
@@ -29,6 +39,11 @@ public static class OpenApiInstaller
         });
     }
 
+
+    /// <summary>
+    /// Provides a default OpenAPI configuration.
+    /// </summary>
+    /// <returns>The default OpenAPI configuration.</returns>
     public static OpenApiConfig DefaultConfig()
     {
         return new()
