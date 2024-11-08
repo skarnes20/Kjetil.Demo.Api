@@ -1,0 +1,9 @@
+﻿global using AutoFixture;
+global using Kjetil.Demo.DataAccess.Entities;
+global using Kjetil.Demo.DataAccess.Repositories;
+global using Kjetil.Demo.DataAccess.UnitTest.Infrastructure;
+global using Microsoft.EntityFrameworkCore;
+global using System;
+global using System.Linq;
+global using System.Threading.Tasks;
+global using Xunit;

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Linq;
-using AutoFixture;
-using Kjetil.Demo.DataAccess.Entities;
-using Microsoft.EntityFrameworkCore;
-
-namespace Kjetil.Demo.DataAccess.UnitTest.Infrastructure;
+﻿namespace Kjetil.Demo.DataAccess.UnitTest.Infrastructure;
 
 public class TestBaseDb
 {

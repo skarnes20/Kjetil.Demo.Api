@@ -1,10 +1,4 @@
-﻿using System.Linq;
-using AutoFixture;
-using Kjetil.Demo.DataAccess.Entities;
-using Kjetil.Demo.Service.Mappers;
-using Xunit;
-
-namespace Kjetil.Demo.Service.UnitTest.Mappers;
+﻿namespace Kjetil.Demo.Service.UnitTest.Mappers;
 
 public class WeatherMapperTest
 {

@@ -1,7 +1,4 @@
-﻿using Kjetil.Demo.Service.Extensions;
-using Xunit;
-
-namespace Kjetil.Demo.Service.UnitTest.Extensions;
+﻿namespace Kjetil.Demo.Service.UnitTest.Extensions;
 
 public class TemperatureExtensionTest
 {

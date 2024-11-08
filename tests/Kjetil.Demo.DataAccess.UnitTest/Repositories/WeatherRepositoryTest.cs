@@ -1,10 +1,3 @@
-using System;
-using System.Linq;
-using System.Threading.Tasks;
-using Kjetil.Demo.DataAccess.Repositories;
-using Kjetil.Demo.DataAccess.UnitTest.Infrastructure;
-using Xunit;
-
 namespace Kjetil.Demo.DataAccess.UnitTest.Repositories;
 
 public class WeatherRepositoryTest : TestBaseDb

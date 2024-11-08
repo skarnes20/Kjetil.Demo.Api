@@ -1,10 +1,3 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Kjetil.Demo.DataAccess.Repositories;
-using Kjetil.Demo.Shared.ViewModels;
-using Moq;
-using Xunit;
-
 namespace Kjetil.Demo.Service.UnitTest;
 
 public class WeatherServiceTest

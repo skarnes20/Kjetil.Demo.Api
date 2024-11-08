@@ -1,9 +1,3 @@
-using System.Threading.Tasks;
-using Kjetil.Demo.Api.Controllers;
-using Kjetil.Demo.Service;
-using Moq;
-using Xunit;
-
 namespace Kjetil.Demo.Api.UnitTest.Controllers;
 
 public class WeatherForecastControllerTest
