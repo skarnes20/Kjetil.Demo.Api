@@ -35,10 +35,7 @@ jobs:
       run: dotnet build --no-restore --configuration Release
 
     - name: Run tests
-      run: dotnet test --no-build --configuration Release --collect:"XPlat Code Coverage" --logger trx --results-directory ./TestResults/
-
-    - name: Convert coverage report to OpenCover format
-      run: reportgenerator -reports:./TestResults/*/coverage.cobertura.xml -targetdir:./TestResults/ -reporttypes:opencover      
+      run: dotnet test --no-build --configuration Release --collect:"XPlat Code Coverage" --logger trx --results-directory ./TestResults/    
 
     - name: Combine Coverage Reports 
       uses: danielpalme/ReportGenerator-GitHub-Action@5.2.4
@@ -91,6 +88,15 @@ jobs:
       if: always()
       with:
         trx_files: "${{ github.workspace }}/**/*.trx"    
+
+    - name: Convert coverage report to OpenCover format
+      run: reportgenerator -reports:./TestResults/*/coverage.cobertura.xml -targetdir:./TestResults/ -reporttypes:opencover     
+      
+    - name: Report test results
+      uses: actions/upload-artifact@v2
+      with:
+        name: TestResults
+        path: ./TestResults/      
         
     - name: End SonarCloud analysis
-      run: dotnet sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"        
+      run: dotnet sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"        
