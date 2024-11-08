@@ -29,52 +29,55 @@ jobs:
       run: dotnet tool install --global dotnet-sonarscanner
 
     - name: Begin SonarCloud analysis
-      run: dotnet sonarscanner begin /k:"skarnes20_Kjetil.Demo.Api" /o:"skarnes20" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.cs.opencover.reportsPaths="**/TestResults/coverage.opencover.xml      
+      run: dotnet sonarscanner begin /k:"skarnes20_Kjetil.Demo.Api" /o:"skarnes20" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.cs.cobertura.reportsPaths="**/TestResults/coverage.cobertura.xml"
 
     - name: Build
       run: dotnet build --no-restore --configuration Release
 
     - name: Run tests
-      run: dotnet test --no-build --configuration Release --collect:"XPlat Code Coverage" --logger trx --results-directory ./TestResults/    
+      run: dotnet test --no-build --configuration Release --collect:"XPlat Code Coverage" --logger trx --results-directory ./TestResults/
 
     - name: Combine Coverage Reports 
       uses: danielpalme/ReportGenerator-GitHub-Action@5.2.4
       with:
-        reports: "**/*.cobertura.xml" 
-        targetdir: "${{ github.workspace }}" 
-        reporttypes: "Cobertura" 
-        verbosity: "Info" 
-        title: "Code Coverage" 
-        tag: "${{ github.run_number }}_${{ github.run_id }}" 
-        customSettings: "" 
-        toolpath: "reportgeneratortool" 
+        reports: "**/*.cobertura.xml"
+        targetdir: "${{ github.workspace }}"
+        reporttypes: "Cobertura"
+        verbosity: "Info"
+        title: "Code Coverage"
+        tag: "${{ github.run_number }}_${{ github.run_id }}"
+        customSettings: ""
+        toolpath: "reportgeneratortool"
+
+    - name: List TestResults directory
+      run: ls -R ./TestResults
 
     - name: Upload Combined Coverage XML
       uses: actions/upload-artifact@v4
       with:
         name: coverage
         path: ${{ github.workspace }}/Cobertura.xml
-        retention-days: 5   
+        retention-days: 5
 
     - name: Publish Code Coverage Report
       uses: irongut/CodeCoverageSummary@v1.3.0
       with:
         filename: "Cobertura.xml"
         badge: true
-        fail_below_min: false 
+        fail_below_min: false
         format: markdown
         hide_branch_rate: false
         hide_complexity: false
         indicators: true
         output: both
-        thresholds: "10 30" 
+        thresholds: "10 30"
 
     - name: Add Coverage PR Comment
       uses: marocchino/sticky-pull-request-comment@v2
       if: github.event_name == 'pull_request'
       with:
         recreate: true
-        path: code-coverage-results.md        
+        path: code-coverage-results.md
 
     - name: Upload Test Result Files
       uses: actions/upload-artifact@v4
@@ -87,16 +90,16 @@ jobs:
       uses: EnricoMi/publish-unit-test-result-action@v2.16.1
       if: always()
       with:
-        trx_files: "${{ github.workspace }}/**/*.trx"    
+        trx_files: "${{ github.workspace }}/**/*.trx"
 
     - name: Convert coverage report to OpenCover format
-      run: reportgenerator -reports:./TestResults/*/coverage.cobertura.xml -targetdir:./TestResults/ -reporttypes:opencover     
-      
+      run: reportgenerator -reports:./TestResults/*/coverage.cobertura.xml -targetdir:./TestResults/ -reporttypes:opencover
+
     - name: Report test results
       uses: actions/upload-artifact@v4
       with:
         name: TestResults
-        path: ./TestResults/      
-        
+        path: ./TestResults/
+
     - name: End SonarCloud analysis
-      run: dotnet sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"        
+      run: dotnet sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
