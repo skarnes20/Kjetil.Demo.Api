@@ -22,7 +22,7 @@ public static class OpenApiInstaller
         app.UseSwagger(options => options.RouteTemplate = "docs/{documentName}/docs.json");
         app.UseSwaggerUI(options =>
         {
-            options.InjectStylesheet("/swagger-ui/custom.css");
+            options.InjectStylesheet("/docs/swagger.css");
             options.SwaggerEndpoint($"/docs/{openApiConfig.Version}/docs.json", $"{openApiConfig.Title} {openApiConfig.Version}");
             options.RoutePrefix = "docs";
             options.DocumentTitle = openApiConfig.Title;
@@ -33,8 +33,8 @@ public static class OpenApiInstaller
     {
         return new()
         {
-            Title = "Kjetil.Demo.Api",
-            Version = "1.0"
+            Title = "Use config to set title",
+            Version = "Use config to set version"
         };
     }
 

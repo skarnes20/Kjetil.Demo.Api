@@ -1,0 +1,20 @@
+﻿title {
+    display: none
+}
+
+.topbar-wrapper img[alt="Swagger UI"] {
+    visibility: hidden;
+}
+
+.topbar-wrapper .link:after {
+    content: "Code4Fun";
+    color: #fff;
+    visibility: visible;
+    display: block;
+    position: absolute;
+    padding: 0px;
+}
+
+#logo_small_svg__SW_TM-logo-on-dark {
+    display: none;
+}
