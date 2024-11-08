@@ -8,5 +8,4 @@ public class WeatherRepository(WeatherDbContext context) : IWeatherRepository
     {
         return await context.Weather.OrderBy(x => x.Id).Take(quantity).ToListAsync();
     }
-
 }
