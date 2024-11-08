@@ -29,13 +29,16 @@ jobs:
       run: dotnet tool install --global dotnet-sonarscanner
 
     - name: Begin SonarCloud analysis
-      run: dotnet sonarscanner begin /k:"skarnes20_Kjetil.Demo.Api" /o:"skarnes20" /d:sonar.login="${{ secrets.SONAR_TOKEN }}"      
+      run: dotnet sonarscanner begin /k:"skarnes20_Kjetil.Demo.Api" /o:"skarnes20" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.cs.opencover.reportsPaths="**/TestResults/coverage.opencover.xml      
 
     - name: Build
       run: dotnet build --no-restore --configuration Release
 
     - name: Run tests
-      run: dotnet test --no-build --configuration Release --collect:"XPlat Code Coverage" --logger trx
+      run: dotnet test --no-build --configuration Release --collect:"XPlat Code Coverage" --logger trx --results-directory ./TestResults/
+
+    - name: Convert coverage report to OpenCover format
+      run: reportgenerator -reports:./TestResults/*/coverage.cobertura.xml -targetdir:./TestResults/ -reporttypes:opencover      
 
     - name: Combine Coverage Reports 
       uses: danielpalme/ReportGenerator-GitHub-Action@5.2.4
