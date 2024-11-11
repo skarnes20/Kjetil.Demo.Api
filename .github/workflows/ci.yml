@@ -1,16 +1,15 @@
-name: CI Pipeline
+name: CI
 
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
     branches:
-      - master
+      - main
 
 jobs:
   build:
-    name: Build
     runs-on: ubuntu-latest
 
     steps:
@@ -20,74 +19,42 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: '8.0.x'
+        dotnet-version: '8.x' 
 
     - name: Restore dependencies
       run: dotnet restore
 
-    - name: Install ReportGenerator
-      run: dotnet tool install --global dotnet-reportgenerator-globaltool 
-
     - name: Build
-      run: dotnet build --no-restore --configuration Release
+      run: dotnet build --no-restore
 
-    - name: Run tests
-      run: dotnet test --no-build --configuration Release --collect:"XPlat Code Coverage" --logger trx --results-directory ./TestResults/
+    - name: Test
+      run: dotnet test --no-build --verbosity normal
 
-    - name: Combine Coverage Reports 
-      uses: danielpalme/ReportGenerator-GitHub-Action@5.2.4
+  sonarcloud:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
       with:
-        reports: "**/*.cobertura.xml"
-        targetdir: "${{ github.workspace }}"
-        reporttypes: "Cobertura"
-        verbosity: "Info"
-        title: "Code Coverage"
-        tag: "${{ github.run_number }}_${{ github.run_id }}"
-        customSettings: ""
-        toolpath: "reportgeneratortool"
+        dotnet-version: '8.x' 
 
-    - name: List TestResults directory
-      run: ls -R ./TestResults
+    - name: Install SonarCloud Scanner
+      run: dotnet tool install --global dotnet-sonarscanner
 
-    - name: Upload Combined Coverage XML
-      uses: actions/upload-artifact@v4
-      with:
-        name: coverage
-        path: ${{ github.workspace }}/Cobertura.xml
-        retention-days: 5
+    - name: Run SonarCloud analysis
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      run: dotnet sonarscanner begin /k:"skarnes20_Kjetil.Demo.Api" /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
+    
+    - name: Build for SonarCloud
+      run: dotnet build
 
-    - name: Publish Code Coverage Report
-      uses: irongut/CodeCoverageSummary@v1.3.0
-      with:
-        filename: "Cobertura.xml"
-        badge: true
-        fail_below_min: false
-        format: markdown
-        hide_branch_rate: false
-        hide_complexity: false
-        indicators: true
-        output: both
-        thresholds: "10 30"
-
-    - name: Add Coverage PR Comment
-      uses: marocchino/sticky-pull-request-comment@v2
-      if: github.event_name == 'pull_request'
-      with:
-        recreate: true
-        path: code-coverage-results.md
-
-    - name: Upload Test Result Files
-      uses: actions/upload-artifact@v4
-      with:
-        name: test-results
-        path: ${{ github.workspace }}/**/TestResults/**/*
-        retention-days: 5
-
-    - name: Publish Test Results
-      uses: EnricoMi/publish-unit-test-result-action@v2.16.1
-      if: always()
-      with:
-        trx_files: "${{ github.workspace }}/**/*.trx"
-
-    - name: Convert coverage report to OpenCover format
-      run: reportgenerator -reports:./TestResults/*/coverage.cobertura.xml -targetdir:./TestResults/ -reporttypes:opencover
+    - name: End SonarCloud analysis
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      run: dotnet sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
