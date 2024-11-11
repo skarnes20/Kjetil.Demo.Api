@@ -50,25 +50,10 @@ jobs:
     needs: build
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
+    - uses: actions/checkout@v4
       with:
-        dotnet-version: '8.0.x'
-
-    - name: Download coverage report
-      uses: actions/download-artifact@v4
-      with:
-        name: coverage-report
-        path: ./TestResults/
-
-    - name: Install SonarScanner
-      run: dotnet tool install --global dotnet-sonarscanner
-
-    - name: Begin SonarCloud analysis
-      run: dotnet sonarscanner begin /k:"skarnes20_Kjetil.Demo.Api" /o:"Skarnes20" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.cs.opencover.reportsPaths="**/TestResults/coverage.opencover.xml"
-
-    - name: End SonarCloud analysis
-      run: dotnet sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"        
+        fetch-depth: 0
+    - name: SonarCloud Scan
+      uses: sonarsource/sonarcloud-github-action@v3.1.0 # Ex: v2.1.0, See the latest version at https://github.com/marketplace/actions/sonarcloud-scan
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
