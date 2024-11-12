@@ -6,7 +6,7 @@ Example of how you can set up an web api with well defined arcitecture, unit tes
 ## Example of customized Open Api
 Based on Swachbuckle so you ned to add 
 ```Powershell
-Install-Package Swashbuckle.AspNetCore -Version 6.1.1
+Install-Package Swashbuckle.AspNetCore -Version 6.9.0
 ```
 ### Demonstrate
 - Custom url (api/docs)
