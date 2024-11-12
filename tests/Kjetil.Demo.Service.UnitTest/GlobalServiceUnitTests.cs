@@ -1,10 +1,13 @@
 ﻿global using Bogus;
 global using Kjetil.Demo.DataAccess.Entities;
+global using Kjetil.Demo.DataAccess.Infrastructure;
 global using Kjetil.Demo.DataAccess.Repositories;
 global using Kjetil.Demo.Service.Extensions;
+global using Kjetil.Demo.Service.Infrastructure;
 global using Kjetil.Demo.Service.Mappers;
 global using Kjetil.Demo.Shared.ViewModels;
-global using Moq;
+global using Microsoft.Extensions.DependencyInjection;
+global using NSubstitute;
 global using System.Collections.Generic;
 global using System.Linq;
 global using System.Threading.Tasks;

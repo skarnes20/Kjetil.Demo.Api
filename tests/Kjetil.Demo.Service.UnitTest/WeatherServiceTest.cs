@@ -2,13 +2,13 @@ namespace Kjetil.Demo.Service.UnitTest;
 
 public class WeatherServiceTest
 {
-    private readonly Mock<IWeatherRepository> _repositoryMock;
+    private readonly IWeatherRepository _repositoryMock;
     private readonly WeatherService _service;
 
     public WeatherServiceTest()
     {
-        _repositoryMock = new Mock<IWeatherRepository>();
-        _service = new WeatherService(_repositoryMock.Object);
+        _repositoryMock = Substitute.For<IWeatherRepository>();
+        _service = new WeatherService(_repositoryMock);
     }
 
     [Fact(DisplayName = "WeatherService Get call repository with correct quantity")]
@@ -16,7 +16,7 @@ public class WeatherServiceTest
     {
         await _service.Get(5);
 
-        _repositoryMock.Verify(x => x.Get(5), Times.Once);
+        await _repositoryMock.Received(1).Get(5);
 
     }
 
