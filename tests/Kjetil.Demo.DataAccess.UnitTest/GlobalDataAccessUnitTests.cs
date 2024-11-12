@@ -1,8 +1,10 @@
 ﻿global using Bogus;
 global using Kjetil.Demo.DataAccess.Entities;
+global using Kjetil.Demo.DataAccess.Infrastructure;
 global using Kjetil.Demo.DataAccess.Repositories;
 global using Kjetil.Demo.DataAccess.UnitTest.Infrastructure;
 global using Microsoft.EntityFrameworkCore;
+global using Microsoft.Extensions.DependencyInjection;
 global using System;
 global using System.Linq;
 global using System.Threading.Tasks;
