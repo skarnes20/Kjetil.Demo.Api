@@ -1,12 +1,12 @@
-name: CI
+name: SonarCloud
 
 on:
   push:
     branches:
-      - sonarcloud
+      - master
   pull_request:
     branches:
-      - sonarcloud
+      - master
 
   workflow_dispatch:
 
