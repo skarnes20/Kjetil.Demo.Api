@@ -63,5 +63,5 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
           ./.sonar/scanner/dotnet-sonarscanner begin /k:"skarnes20_Kjetil.Demo.Api" /o:"skarnes20" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
-          dotnet build --no-incremental Kjetil.Demo.Api.sln --logger "trx;LogFileName=test-results.trx"
+          dotnet build --no-incremental --logger "trx;LogFileName=test-results.trx" Kjetil.Demo.Api.sln
           ./.sonar/scanner/dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
