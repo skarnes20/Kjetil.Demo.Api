@@ -1,5 +1,8 @@
 ﻿namespace Code4Fun.Demo.Api.Infrastructure;
 
+/// <summary>
+/// Defines the OpenApi configuration
+/// </summary>
 public static class OpenApiInstaller
 {
     /// <summary>
