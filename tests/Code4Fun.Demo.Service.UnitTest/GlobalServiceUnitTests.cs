@@ -1,0 +1,14 @@
+﻿global using Bogus;
+global using Code4Fun.Demo.DataAccess.Entities;
+global using Code4Fun.Demo.DataAccess.Infrastructure;
+global using Code4Fun.Demo.DataAccess.Repositories;
+global using Code4Fun.Demo.Service.Extensions;
+global using Code4Fun.Demo.Service.Infrastructure;
+global using Code4Fun.Demo.Service.Mappers;
+global using Code4Fun.Demo.Shared.ViewModels;
+global using Microsoft.Extensions.DependencyInjection;
+global using NSubstitute;
+global using System.Collections.Generic;
+global using System.Linq;
+global using System.Threading.Tasks;
+global using Xunit;
