@@ -1,16 +1,30 @@
-namespace Code4Fun.Demo.Api;
-
 public class Program
 {
-    protected static void Main(string[] args)
+    public static void Main(string[] args)
     {
-        CreateHostBuilder(args).Build().Run();
-    }
+        var builder = WebApplication.CreateBuilder(args);
 
-    private static IHostBuilder CreateHostBuilder(string[] args) =>
-        Host.CreateDefaultBuilder(args)
-            .ConfigureWebHostDefaults(webBuilder =>
-            {
-                webBuilder.UseStartup<Startup>();
-            });
+        builder.AddServiceDefaults();
+
+        var openApiConfig = OpenApiInstaller.DefaultConfig();
+        builder.Configuration.Bind("OpenApi", openApiConfig);
+
+        builder.Services.AddControllers();
+        builder.Services.AddOpenApi(openApiConfig);
+        builder.Services.AddServices();
+
+        var app = builder.Build();
+
+        if (builder.Environment.IsDevelopment())
+        {
+            app.UseDeveloperExceptionPage();
+            app.UseOpenApi(openApiConfig);
+        }
+
+        app.UseHttpsRedirection();
+        app.UseRouting();
+        app.UseAuthorization();
+        app.MapControllers();
+        app.Run();
+    }
 }

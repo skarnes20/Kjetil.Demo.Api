@@ -17,6 +17,7 @@
   </ItemGroup>
   
   <ItemGroup>
+    <ProjectReference Include="..\..\aspire\Code4Fun.Demo.Api.ServiceDefaults\Code4Fun.Demo.Api.ServiceDefaults.csproj" />
     <ProjectReference Include="..\Code4Fun.Demo.Service\Code4Fun.Demo.Service.csproj" />
   </ItemGroup>
 
