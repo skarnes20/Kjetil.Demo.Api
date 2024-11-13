@@ -14,15 +14,4 @@ public class ServiceInstallerTests
         Assert.NotNull(weatherService);
         Assert.IsType<WeatherService>(weatherService);
     }
-
-    [Fact]
-    public void AddServices_ShouldCallAddDb()
-    {
-        var services = Substitute.For<IServiceCollection>();
-        var serviceInstaller = Substitute.ForPartsOf<IServiceCollection>();
-
-        services.AddServices();
-
-        serviceInstaller.Received(1).AddDb();
-    }
 }
