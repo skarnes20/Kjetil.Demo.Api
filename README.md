@@ -1,6 +1,6 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=skarnes20_Kjetil.Demo.Api&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=skarnes20_Kjetil.Demo.Api)
 
-# Kjetil.Demo.Api
+# Code4Fun.Demo.Api
 Example of how you can set up an web api with well defined arcitecture, unit testing and customized open api documentation
 
 ## Example of customized Open Api
